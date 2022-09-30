@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.activeib{
+  border-color: linear-gradient(hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+}
+
+.inputerror {
+  border: hsl(0, 100%, 66%);
+}
+
+.activeib {
+  background: linear-gradient(hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+}
+
+.inputerror {
+  background: hsl(0, 100%, 66%);
+}
+
+@keyframes cardBack {
+  0%{
+      opacity: 0;
+      transform: translateX(-50%);
+  }
+}
+
+@keyframes cardFront {
+  0%{
+      opacity: 0;
+      transform: translateX(50%);
+  }
+}
+
+.card__front {
+  animation: cardFront 1s ease .5s backwards;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 0.7rem;
+}
+
+.card__back {
+  animation: cardBack 1s ease .5s backwards;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 0.7rem;
+}
