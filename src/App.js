@@ -1,5 +1,3 @@
-import Frontcard from "./components/Frontcard";
-import Backcard from "./components/Backcard";
 import { bg_card_back, bg_card_front, favicon_32x32} from "./images"
 import { useState,useEffect } from "react";
 import CardForm from "./components/CardForm";
@@ -14,6 +12,34 @@ const normalizeCardNumber = (value) => {
 }
 
 const App = () => {
+
+  const [formData, setFormData] = useState({
+    cardname:'',
+    cardnumber:'',
+    expM:'',
+    expY:'',
+    cvc:'',
+    formErrors: {cardname:'',cardnumber:'',expdate:'',cvc:''},
+    cardnamevalid:false,
+    cardnumbervalid:false,
+    expMvalid:false,
+    expYvalid:false,
+    expdatevalid:false,
+    cvcvalid:false,
+    formValid:false
+  })
+
+  useEffect(()=> {
+   updateFormData({
+    formValid: formData.cardnamevalid && formData.cardnumbervalid && formData.expMvalid && formData.expYvalid && formData.cvcvalid,
+   })
+
+  }, [formData.cardnamevalid, formData.cardnumbervalid, formData.expMvalid, formData.expYvalid, formData.cvcvalid])
+
+  const updateFormData = (updatedData) => setFormData({
+    ...formData,
+    ...updatedData
+  })
   
   const [cardName, setCardName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -57,7 +83,7 @@ const App = () => {
 
       {/* right part form */}
       <div className="px-6 mob:mt-20 py-2 font-grotesk desktop:ml-80 desktop:mt-60">
-        <CardForm />
+        <CardForm formData={formData} updateFormData={updateFormData}/>
         <CompleteForm />
       </div>
     </div>
