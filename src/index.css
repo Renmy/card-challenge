@@ -45,3 +45,7 @@
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.3);
   border-radius: 0.7rem;
 }
+
+* {
+  font-family: "Space Grotesk", sans-serif;
+}

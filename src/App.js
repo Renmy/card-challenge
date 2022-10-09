@@ -3,28 +3,8 @@ import Backcard from "./components/Backcard";
 import { bg_card_back, bg_card_front, favicon_32x32} from "./images"
 import { useState,useEffect } from "react";
 import CardForm from "./components/CardForm";
+import CompleteForm from "./components/CompleteForm";
 
-  // validate keypress numeric
-  // const validateNumbers = (event) => {
-  //   const keyValue  = event.target.value;
-  //   console.log(keyValue);    
-  //   if (!(new RegExp("[0-9]").test(keyValue[keyValue.length - 1]))){
-  //     console.log('invalid keypress ');
-  //     event.target.value = event.target.value.substr(0, keyValue.length - 1)
-  //   } else {
-  //     console.log("is numeric "  + keyValue.length)
-  //     if(keyValue.length === 4 || keyValue.length === 9 || keyValue.length === 14){
-  //       event.target.value+=" ";
-  //     }
-  //   };
-  //   return;
-  // }
-
-    // const handleChange = (e) => {
-  //   // Use whatever regex you need.
-  //   const filteredInput = e.target.value.replace(/[0-9]|\d+/g, '');
-  //   this.setState(value: filteredInput);
-  // }
 
 const normalizeCardNumber = (value) => {
   if(!(new RegExp(/[0-9]|\d+/g).test(value[value.length-1]))){
@@ -33,44 +13,7 @@ const normalizeCardNumber = (value) => {
   return value.replace(/\s/g, "").match(/.{1,4}/g)?.join(" ").substr(0, 19) || ""
 }
 
-let cardError = false;
-let nameError = false, expMerror = false, expYerror = false, cvcError = false;
-
-const ErrorToggler = () => {
-  if(!cardError){
-    cardError=true;
-  } else cardError=false;
-  console.log(cardError.toString());
-}
-
-
 const App = () => {
-  
-  const validateCardData = (e) => {
-    
-    e.preventDefault();
-    // let smalls = document.querySelectorAll('.error');
-    // for (let s of smalls){
-    //   s.classList.toggle('hidden');
-    // }
-    if(!new RegExp(/[0-9]|\d+/g).test(cardNumber)||cardNumber === ""){
-        let s = document.getElementById('cardError');
-        s.classList.toggle('hidden')
-        console.log(s);
-    }
-      
-    // if(!new RegExp(/[0-9]|\d+/g).test(expMonth) || !new RegExp(/[0-9]|\d+/g).test(expYear) || expMonth === "" || expYear === ""){
-    //   expMerror = true;
-    //   expYerror = true;
-    // }
-    // if(!new RegExp(/[0-9]|\d+/g).test(cvc)||cvc === ""){
-    //   cvcError = true;
-    // }
-    console.log(expMerror);
-    console.log(cardError);
-    console.log(expYerror);
-    console.log(cvcError);
-  }
   
   const [cardName, setCardName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -115,6 +58,7 @@ const App = () => {
       {/* right part form */}
       <div className="px-6 mob:mt-20 py-2 font-grotesk desktop:ml-80 desktop:mt-60">
         <CardForm />
+        <CompleteForm />
       </div>
     </div>
   )
