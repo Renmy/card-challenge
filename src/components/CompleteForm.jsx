@@ -1,4 +1,3 @@
-import React from 'react';
 import { icon_complete } from '../images';
 
 const CompleteForm = ({toggleForm, setToggleForm, initialstate, setFormData}) => {

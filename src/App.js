@@ -1,4 +1,4 @@
-import { bg_card_back, bg_card_front, favicon_32x32} from "./images"
+import { bg_card_back } from "./images"
 import { useState,useEffect } from "react";
 import CardForm from "./components/CardForm";
 import CompleteForm from "./components/CompleteForm";
