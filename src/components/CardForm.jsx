@@ -1,6 +1,6 @@
 import React, { useState,Component } from "react";
 
-const CardForm = ({formData, updateFormData}) => {
+const CardForm = ({formData, updateFormData, toggleForm, setToggleForm}) => {
 
     const normalizeCardNumber = (card) => {
         // if(!(new RegExp(/[0-9]|\d+/g).test(card[card.length-1]))){
@@ -75,9 +75,15 @@ const CardForm = ({formData, updateFormData}) => {
         }
 
     }
+    const onSubmit = (e) => {
+        e.preventDefault();
+        setToggleForm(true);
+        console.log(toggleForm);
+      }
+    
 
     return (
-        <form class="w-full max-w-[420px]">
+        <form class={`w-full max-w-[420px] ${!toggleForm?'block':'hidden'}`} onSubmit={onSubmit}>
             <div class="flex flex-wrap -mx-3 mb-6 tracking-widest">
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 ">
                     <label className="block uppercase text-gray-700 text-xs  mb-2" for="cardname">
@@ -115,7 +121,7 @@ const CardForm = ({formData, updateFormData}) => {
                 </div>
             </div>
             <div>
-                <button type="submit" className="w-full text-center text-lg bg-[#21092F] rounded-md p-3 text-gray-200 font-grotesk disabled:cursor-not-allowed disabled:bg-gray-600 " disabled={!formData.formValid}  >Confirm</button>
+                <button type="submit" className="w-full text-center text-lg bg-[#21092F] rounded-md p-3 text-gray-200 font-grotesk disabled:cursor-not-allowed disabled:bg-gray-600 " disabled={!formData.formValid} >Confirm</button>
             </div>
         </form>
     )
